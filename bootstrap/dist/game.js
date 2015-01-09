@@ -1,8 +1,8 @@
 var gameProto = {
-    state: 0, //0 = new game, 1 = game in progress
     guess: 0,
     target: 0, //store number
-    numTries: 0, //Store the number of attempts
+    numTries: 0,
+    pastGuesses: [], //Store all previous attempts
 
     
     checkGuess: function (num) {
@@ -13,9 +13,10 @@ var gameProto = {
         }
         if (this.guess !== this.target) {
             this.numTries++;
+            this.pastGuesses.push(this.guess);
             this.notify();
         } else {
-            
+            console.log("You win!")
         }
     },
     
