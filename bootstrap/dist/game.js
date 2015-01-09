@@ -2,6 +2,7 @@ var gameProto = {
     guess: 0, //Last guess by player
     target: 0, //store game target to be guessed
     numTries: 0, //Guess counter
+    totalTries: 5, //Number of guesses allowed before game is over
     pastGuesses: [], //Store all previous attempts
 
     //Main game function evaluates player's guess.
@@ -37,6 +38,7 @@ var gameProto = {
             if (intPositive) {console.log("You're ice cold... guess higher!");} 
             else {console.log("You're ice cold... guess lower!");}
         }
+        console.log("You have " + (this.totalTries - this.pastGuesses.length) + " guesses remaining.")
     },
 }
 
