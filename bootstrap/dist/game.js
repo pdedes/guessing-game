@@ -1,9 +1,12 @@
 var gameProto = {
     state: 0, //0 = new game, 1 = game in progress
+    guess: 0
     target: 0, //this is where the number to be guessed is stored
+    numTries: 0, //Store the number of attempts
+    
     notifyCold: function () {console.log("You're ice cold... guess again!");},
     notifyWarm: function () {
-        var distance = Math.abs(target-guess);
+        var distance = Math.abs(this.target-this.guess);
         if (distance < 10){
             console.log("You're very hot!");
         }
@@ -11,7 +14,6 @@ var gameProto = {
             console.log("You're getting warmer...");
         }
     },
-    numTries = 0, //Store the number of attempts
 }
 
 function Game {
