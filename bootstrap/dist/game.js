@@ -1,16 +1,17 @@
 var gameProto = {
     state: 0, //0 = new game, 1 = game in progress
     guess: 0,
-    target: 0, //this is where the number to be guessed is stored
+    target: 0, //store number
     numTries: 0, //Store the number of attempts
 
     
     checkGuess: function (num) {
         this.guess = num;
-        while (num < 1 && num > 100) {
+        while (this.guess < 1 || this.guess > 100) {
             console.log("outside bounds...");
+            this.guess = prompt("Your guess is not between 1 to 100.")
         }
-        if (num !== this.target) {
+        if (this.guess !== this.target) {
             this.numTries++;
             this.notify();
         } else {
@@ -22,7 +23,7 @@ var gameProto = {
         var distance = Math.abs( this.target - this.guess );
         if (distance < 10) {
             console.log("You're very hot!");
-        } else if (distance >=10 && distance < 30) {
+        } else if (distance >=10 && distance < 20) {
             console.log("You're getting warmer...");
         } else {
             console.log("You're ice cold... guess again!");
