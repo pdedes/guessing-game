@@ -8,16 +8,22 @@ var gameProto = {
     //Main game function evaluates player's guess.
     checkGuess: function (num) {
         this.guess = num;
-        while (this.guess < 1 || this.guess > 100) {
-            console.log("outside bounds...");
-            this.guess = +(prompt("Your guess is not between 1 to 100."));
-        }
-        if (this.guess !== this.target) {
-            this.numTries++;
-            this.pastGuesses.push(this.guess);
-            this.notify();
+        if(this.pastGuesses.length < this.totalTries) {
+            while (this.guess < 1 || this.guess > 100) {
+                console.log("outside bounds...");
+                this.guess = +(prompt("Your guess is not between 1 to 100."));
+            }
+            if (this.guess !== this.target) {
+                this.numTries++;
+                this.pastGuesses.push(this.guess);
+                this.notify();
+            } else {
+                console.log("You win!")
+                newGame = new Game("newGame");
+            }
         } else {
-            console.log("You win!")
+            console.log("Sorry, you lost! New game starts now...")
+            newGame = new Game("newGame");
         }
     },
     
@@ -45,7 +51,9 @@ var gameProto = {
 //Setting 'this' for the Game prototype and initialized values.
 function Game () {
     this.target = Math.floor(Math.random()*100)+1;
+    this.guess = 0;
     this.numTries = 0;
+    this.pastGuesses = [];
 }
 
 //Assigning inheritance.
