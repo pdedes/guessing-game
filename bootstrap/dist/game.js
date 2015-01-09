@@ -3,15 +3,29 @@ var gameProto = {
     guess: 0
     target: 0, //this is where the number to be guessed is stored
     numTries: 0, //Store the number of attempts
+
     
-    notifyCold: function () {console.log("You're ice cold... guess again!");},
-    notifyWarm: function () {
-        var distance = Math.abs(this.target-this.guess);
-        if (distance < 10){
-            console.log("You're very hot!");
+    checkGuess: function (num) {
+        while(num < 1 && num > 100) {
+            console.log("outside bounds...");
+            return 1;
+        } 
+        
+        if (num !== this.target) {
+
+        } else {
+            
         }
-        else (distance >=10 && distance < 30) {
+    },
+    notify: function () {
+        var distance = Math.abs( this.target - this.guess );
+        if (distance < 10) {
+            console.log("You're very hot!");
+        } else if (distance >=10 && distance < 30) {
             console.log("You're getting warmer...");
+        } else {
+
+            console.log("You're ice cold... guess again!");
         }
     },
 }
