@@ -8,7 +8,8 @@ var gameProto = {
     //Main game function evaluates player's guess.
     checkGuess: function (num) {
         this.guess = num;
-        if(this.pastGuesses.length < this.totalTries) {
+        debugger;
+        if(this.numTries < this.totalTries) {
             while (this.guess < 1 || this.guess > 100) {
                 console.log("outside bounds...");
                 this.guess = +(prompt("Your guess is not between 1 to 100."));
@@ -19,12 +20,12 @@ var gameProto = {
                 this.notify();
             } else {
                 console.log("You win!")
-                newGame = new Game("newGame");
+                newGame = new Game();
             }
         } else {
             console.log("Sorry, you lost! New game starts now...")
-            newGame = new Game("newGame");
-        }
+            newGame = new Game();
+        };
     },
     
     notify: function () {
@@ -44,8 +45,12 @@ var gameProto = {
             if (intPositive) {console.log("You're ice cold... guess higher!");} 
             else {console.log("You're ice cold... guess lower!");}
         }
-        console.log("You have " + (this.totalTries - this.pastGuesses.length) + " guesses remaining.")
+        return console.log("You have " + (this.totalTries - this.pastGuesses.length) + " guesses remaining.");
     },
+
+    resetGame: function () {
+        newGame = new Game(); 
+    }
 }
 
 //Setting 'this' for the Game prototype and initialized values.
@@ -60,4 +65,4 @@ function Game () {
 Game.prototype = gameProto;
 
 //Declaring a new game.
-newGame = new Game("newGame");
+newGame = new Game();
