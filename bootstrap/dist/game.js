@@ -10,21 +10,26 @@ var gameProto = {
         this.guess = num;
         debugger;
         if(this.numTries < this.totalTries) {
+            this.numTries++;
             while (this.guess < 1 || this.guess > 100) {
                 console.log("outside bounds...");
                 this.guess = +(prompt("Your guess is not between 1 to 100."));
             }
-            if (this.guess !== this.target) {
-                this.numTries++;
+            
+            if (this.guess !== this.target && this.numTries === this.totalTries) {
+                console.log("Sorry, you lost! New game starts now...")
+                this.resetGame();
+            } else if (this.guess !== this.target) { 
                 this.pastGuesses.push(this.guess);
                 this.notify();
             } else {
                 console.log("You win!")
-                newGame = new Game();
+                this.resetGame();
             }
+
         } else {
             console.log("Sorry, you lost! New game starts now...")
-            newGame = new Game();
+            this.resetGame();
         };
     },
     
