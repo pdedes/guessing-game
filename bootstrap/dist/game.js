@@ -7,10 +7,10 @@ var gameProto = {
     
     checkGuess: function (num) {
         this.guess = num;
-        while (this.guess < 1 || this.guess > 100) {
+        while (num < 1 && num > 100) {
             console.log("outside bounds...");
         }
-        if (this.guess !== this.target) {
+        if (num !== this.target) {
             this.numTries++;
             this.notify();
         } else {
@@ -22,7 +22,7 @@ var gameProto = {
         var distance = Math.abs( this.target - this.guess );
         if (distance < 10) {
             console.log("You're very hot!");
-        } else if (distance >=10 && distance < 20) {
+        } else if (distance >=10 && distance < 30) {
             console.log("You're getting warmer...");
         } else {
             console.log("You're ice cold... guess again!");
