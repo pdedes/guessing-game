@@ -14,20 +14,12 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template -->
-    <link href="jumbotron-narrow.css" rel="stylesheet">
-    <script src ="jQuery.min.js"></script>
+    <!-- Custom styles for this template-->
+    
+    <script type="text/javascript" src ="jquery.js"></script>
+
+    <!-- linking jQuery and game logic -->
     <script src="game.js"></script>
-
-    <!-- Just for debugging purposes. Don't actually copy these 2 lines! -->
-    <!--[if lt IE 9]><script src="../../assets/js/ie8-responsive-file-warning.js"></script><![endif]-->
-    <script src="assets/js/ie-emulation-modes-warning.js"></script>
-
-    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
-    <!--[if lt IE 9]>
-      <script src="https://oss.maxcdn.com/html5shiv/3.7.2/html5shiv.min.js"></script>
-      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
-    <![endif]-->
   </head>
 
   <body>
@@ -45,9 +37,9 @@
 
       <div class="jumbotron">
         <h2>Can you Guess the Number?</h2>
-        <p class="lead">To win this game, you must correctly guess the number I'm thinking of. The catch? You only have a limited number of guesses available...</p>
+        <p class="lead">To win this game, you must correctly guess the number I'm thinking of. The catch? You only have a limited number of guesses available...<span class="numbertry">five attempts to be exact, good luck!</span></p>
         <p>
-			<a class="btn btn-md btn-success" href="#" role="button">Check your Guess!</a>
+			<a id="checkBtn" class="btn btn-md btn-success" href="#" role="button">Check your Guess!</a>
 			<a class="btn btn-group btn-md btn-default" href="#" role="button">Start Over...</a>
 			<a class="btn btn-group btn-md btn-default" href="#" role="button">Hint</a>
 		<p>
@@ -72,8 +64,5 @@
 
     </div> <!-- /container -->
 
-
-    <!-- IE10 viewport hack for Surface/desktop Windows 8 bug -->
-    <script src="assets/js/ie10-viewport-bug-workaround.js"></script>
   </body>
 </html>

@@ -1,3 +1,20 @@
+$( document ).ready(function() {
+    
+    $( ".numbertry").fadeOut(3000).removeClass(".numbertry");
+    $( ".form-control" ).submit(function( ) {
+ 
+        newGame.checkGuess('.form-control :input');
+ 
+    });
+ 
+});
+    // Game.prototype = gameProto;
+    // newGame = new Game();
+    // $('#checkBtn').submit( function (num) {
+    //     newGame.checkGuess(num);
+    // })
+ 
+
 var gameProto = {
     guess: 0, //Last guess by player
     target: 0, //store game target to be guessed
@@ -8,7 +25,6 @@ var gameProto = {
     //Main game function evaluates player's guess.
     checkGuess: function (num) {
         this.guess = num;
-        debugger;
         if(this.numTries < this.totalTries) {
             this.numTries++;
             while (this.guess < 1 || this.guess > 100) {
