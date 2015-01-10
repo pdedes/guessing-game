@@ -1,14 +1,8 @@
 $( document ).ready(function() {
     
-    $( ".numbertry").fadeOut(3000).removeClass(".numbertry");
-    $( "a>checkButton").click(function (){
-        $("a>checkButton").fadeOut('slow');
-    });
-    $( ".form-control" ).submit(function( ) {
- 
-        newGame.checkGuess('.form-control :input');
- 
-    });
+    Game.prototype = gameProto;
+    newGame = new Game();
+    $(".numbertry").fadeOut(10000).removeClass(".numbertry");
  
 }); 
 
@@ -21,7 +15,8 @@ var gameProto = {
 
     //Main game function evaluates player's guess.
     checkGuess: function (num) {
-        this.guess = num;
+        debugger;
+        this.guess = parseInt(document.getElementByID("playerguess").value, 10);
         if(this.numTries < this.totalTries) {
             this.numTries++;
             while (this.guess < 1 || this.guess > 100) {
@@ -80,7 +75,6 @@ function Game () {
 }
 
 //Assigning inheritance.
-Game.prototype = gameProto;
+
 
 //Declaring a new game.
-newGame = new Game();

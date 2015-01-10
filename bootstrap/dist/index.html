@@ -19,7 +19,7 @@
     <script type="text/javascript" src ="jquery.js"></script>
 
     <!-- linking jQuery and game logic -->
-    <script src="game.js"></script>
+    <script type="text/javascript" src="game.js"></script>
   </head>
 
   <body>
@@ -39,13 +39,15 @@
         <h2>Can you Guess the Number?</h2>
         <p class="lead">To win this game, you must correctly guess the number I'm thinking of. The catch? You only have a limited number of guesses available...<span class="numbertry">five attempts to be exact, good luck!</span></p>
         <p>
-			<a id="checkBtn" class="btn btn-md btn-success" href="#" role="button">Check your Guess!</a>
-			<a class="btn btn-group btn-md btn-default" href="#" role="button">Start Over...</a>
-			<a class="btn btn-group btn-md btn-default" href="#" role="button">Hint</a>
+			<div class="buttons">
+        <button id="checkButton" onclick='newGame.checkGuess()' class="btn btn-md btn-success" href="#" role="button">Check your Guess!</a>
+  			<button id="checkButton" onclick='newGame.resetGame()' class="btn btn-group btn-md btn-default" href="#" role="button">Start Over...</a>
+  			<button id="checkButton" class="btn btn-group btn-md btn-default" href="#" role="button">Hint</a>
+      </div>
 		<p>
 			<div class="input-group input-group-lg">
 			  <span class="input-group-addon" id="basic-addon1">#</span>
-			  <input type="text" class="form-control" placeholder="From 1 to 100" aria-describedby="basic-addon1">
+			  <input id="playerguess" type="text" class="form-control" placeholder="From 1 to 100" aria-describedby="basic-addon1" onkeydown="if (event.keyCode === 13) newGame.checkGuess()">
 			</div>
 			<div class="alert alert-success" role="alert">You have # of guesses remaining.</div>
 		</p>
