@@ -1,19 +1,16 @@
 $( document ).ready(function() {
     
     $( ".numbertry").fadeOut(3000).removeClass(".numbertry");
+    $( "a>checkButton").click(function (){
+        $("a>checkButton").fadeOut('slow');
+    });
     $( ".form-control" ).submit(function( ) {
  
         newGame.checkGuess('.form-control :input');
  
     });
  
-});
-    // Game.prototype = gameProto;
-    // newGame = new Game();
-    // $('#checkBtn').submit( function (num) {
-    //     newGame.checkGuess(num);
-    // })
- 
+}); 
 
 var gameProto = {
     guess: 0, //Last guess by player
