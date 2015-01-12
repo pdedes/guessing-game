@@ -1,7 +1,33 @@
 $( document ).ready(function() {
     
-    Game.prototype = gameProto;
     newGame = new Game();
+    var updateTries = $("guessCount").html(newGame.totalTries-newGame.numTries);
+
+    $("checkGuessButton").on("mouseup", function (event) {
+        debugger;
+        event.stopPropagation();
+        var guessValue = ("#playerguess").value();
+        newGame.checkGuess(guessValue);
+        updateTries;
+    });
+    $("guessCount").html("You have 5 attempts remaining.");
+    $("restart").on("mouseup", function (event) {
+        event.stopPropagation();
+        newGame.resetGame();
+        updateTries;
+    });
+      $("hint").on("mouseup", function (event) {
+        event.stopPropagation();
+        // Need to code this functionality
+    });
+    $("#playerguess").on("keyup", function (event) {
+        if (event.keyCode === 13) {
+            var guessValue = ("#playerguess").value();
+            newGame.checkGuess(guessValue);
+            updateTries;
+        }
+    })
+
     $(".numbertry").fadeOut(10000).removeClass(".numbertry");
  
 }); 
@@ -15,7 +41,6 @@ var gameProto = {
 
     //Main game function evaluates player's guess.
     checkGuess: function (num) {
-        debugger;
         this.guess = parseInt(document.getElementByID("playerguess").value, 10);
         if(this.numTries < this.totalTries) {
             this.numTries++;
@@ -75,6 +100,6 @@ function Game () {
 }
 
 //Assigning inheritance.
-
+Game.prototype = gameProto;
 
 //Declaring a new game.
