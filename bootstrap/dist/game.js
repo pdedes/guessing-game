@@ -1,12 +1,14 @@
-$( document ).ready(function() {
+
+
+$(document ).ready(function() {
     
     newGame = new Game();
-    var updateTries = $("guessCount").html(newGame.totalTries-newGame.numTries);
+    var updateTries = $("#guessCount").html(newGame.totalTries-newGame.numTries);
 
-    $("checkGuessButton").on("mouseup", function (event) {
-        debugger;
+    $("#checkGuessButton").on("click", function (event) {
         event.stopPropagation();
-        var guessValue = ("#playerguess").value();
+        var guessValue = parseInt($("#playerguess").val(), 10);
+        $("#playerguess").val("");
         newGame.checkGuess(guessValue);
         updateTries;
     });
@@ -41,7 +43,8 @@ var gameProto = {
 
     //Main game function evaluates player's guess.
     checkGuess: function (num) {
-        this.guess = parseInt(document.getElementByID("playerguess").value, 10);
+        // this.guess = parseInt(document.getElementById("playerguess").value, 10);
+        this.guess = num;
         if(this.numTries < this.totalTries) {
             this.numTries++;
             while (this.guess < 1 || this.guess > 100) {
