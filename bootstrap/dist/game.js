@@ -51,6 +51,7 @@ var gameProto = {
         if(this.numTries < this.totalTries) {
             this.numTries++;
             while (this.guess < 1 || this.guess > 100) {
+                $("#clue").html("Your guess was out of bounds. Pick a number between 1 to 100.");
                 console.log("outside bounds...");
                 this.guess = +(prompt("Your guess is not between 1 to 100."));
             }
@@ -81,14 +82,14 @@ var gameProto = {
 
         //This determines distance from the target, and informs player to guess in the correct direction (pos or neg)
         if (distance < 10) {
-            if (intPositive) {$clue.html("You're very hot! Guess higher.");} 
-            else {$clue.html("You're very hot! Guess lower.");}
+            if (intPositive) {$clue.html("You're very hot! Guess higher.").fadeIn(700).fadeOut(4000);} 
+            else {$clue.html("You're very hot! Guess lower.").fadeIn(700).fadeOut(4000);}
         } else if (distance >=10 && distance < 20) {
-            if (intPositive) {$clue.html("You're getting warmer. Guess higher.");} 
-            else {$clue.html("You're getting warmer. Guess lower.");}
+            if (intPositive) {$clue.html("You're getting warmer. Guess higher.").fadeIn(700).fadeOut(4000);} 
+            else {$clue.html("You're getting warmer. Guess lower.").fadeIn(700).fadeOut(4000);}
         } else {
-            if (intPositive) {$clue.html("You're ice cold... guess higher!");} 
-            else {$clue.html("You're ice cold... guess lower!");}
+            if (intPositive) {$clue.html("You're ice cold... guess higher!").fadeIn(700).fadeOut(4000);} 
+            else {$clue.html("You're ice cold... guess lower!").fadeIn(700).fadeOut(4000);}
         }
         return console.log("You have " + (this.totalTries - this.pastGuesses.length) + " guesses remaining.");
     },
