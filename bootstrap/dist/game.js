@@ -3,30 +3,33 @@
 $(document ).ready(function() {
     
     newGame = new Game();
-    var updateTries = $("#guessCount").html(newGame.totalTries-newGame.numTries);
+    // var updateTries = $("#guessCount").html(function () {
+    //     debugger;
+    //     var printTries = newGame.totalTries-newGame.numTries;
+    //     return " " + printTries + " ";
+    // });
 
     $("#checkGuessButton").on("click", function (event) {
         event.stopPropagation();
         var guessValue = parseInt($("#playerguess").val(), 10);
         $("#playerguess").val("");
         newGame.checkGuess(guessValue);
-        updateTries;
+        $("#guessCount").html(newGame.totalTries-newGame.numTries);
     });
-    $("guessCount").html("You have 5 attempts remaining.");
-    $("restart").on("mouseup", function (event) {
-        event.stopPropagation();
+    // $("#guessCount").html("You have 5 attempts remaining.");
+    $("#restart").on("mouseup", function (event) {
         newGame.resetGame();
-        updateTries;
+        $("#guessCount").html(newGame.totalTries-newGame.numTries);
     });
-      $("hint").on("mouseup", function (event) {
-        event.stopPropagation();
+    $("#hint").on("mouseup", function (event) {
         // Need to code this functionality
     });
     $("#playerguess").on("keyup", function (event) {
         if (event.keyCode === 13) {
-            var guessValue = ("#playerguess").value();
+            var guessValue = parseInt($("#playerguess").val(), 10);
+            $("#playerguess").val("")
             newGame.checkGuess(guessValue);
-            updateTries;
+            $("#guessCount").html(newGame.totalTries-newGame.numTries);
         }
     })
 
@@ -51,20 +54,20 @@ var gameProto = {
                 console.log("outside bounds...");
                 this.guess = +(prompt("Your guess is not between 1 to 100."));
             }
-            
+        
             if (this.guess !== this.target && this.numTries === this.totalTries) {
-                console.log("Sorry, you lost! New game starts now...")
                 this.resetGame();
+                $("#clue").html("Sorry, you lost! New game starts now...");
             } else if (this.guess !== this.target) { 
                 this.pastGuesses.push(this.guess);
                 this.notify();
             } else {
-                console.log("You win!")
                 this.resetGame();
+                $("#clue").html("You win!");
             }
 
         } else {
-            console.log("Sorry, you lost! New game starts now...")
+            $("#clue").html("Sorry, you lost! New game starts now...");
             this.resetGame();
         };
     },
@@ -74,17 +77,18 @@ var gameProto = {
         var distance = this.target - this.guess;
         var intPositive = distance > 0 ? true : false;
         distance = Math.abs(distance);
+        $clue = $("#clue");
 
         //This determines distance from the target, and informs player to guess in the correct direction (pos or neg)
         if (distance < 10) {
-            if (intPositive) {console.log("You're very hot! Guess higher.");} 
-            else {console.log("You're very hot! Guess lower.");}
+            if (intPositive) {$clue.html("You're very hot! Guess higher.");} 
+            else {$clue.html("You're very hot! Guess lower.");}
         } else if (distance >=10 && distance < 20) {
-            if (intPositive) {console.log("You're getting warmer. Guess higher.");} 
-            else {console.log("You're getting warmer. Guess lower.");}
+            if (intPositive) {$clue.html("You're getting warmer. Guess higher.");} 
+            else {$clue.html("You're getting warmer. Guess lower.");}
         } else {
-            if (intPositive) {console.log("You're ice cold... guess higher!");} 
-            else {console.log("You're ice cold... guess lower!");}
+            if (intPositive) {$clue.html("You're ice cold... guess higher!");} 
+            else {$clue.html("You're ice cold... guess lower!");}
         }
         return console.log("You have " + (this.totalTries - this.pastGuesses.length) + " guesses remaining.");
     },
