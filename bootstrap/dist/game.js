@@ -82,14 +82,14 @@ var gameProto = {
 
         //This determines distance from the target, and informs player to guess in the correct direction (pos or neg)
         if (distance < 10) {
-            if (intPositive) {$clue.html("You're very hot! Guess higher.").fadeIn(700).fadeOut(4000);} 
-            else {$clue.html("You're very hot! Guess lower.").fadeIn(700).fadeOut(4000);}
+            if (intPositive) {$clue.html("You're very hot! Guess higher.").fadeIn(700).fadeOut(3000);} 
+            else {$clue.html("You're very hot! Guess lower.").fadeIn(700).fadeOut(3000);}
         } else if (distance >=10 && distance < 20) {
-            if (intPositive) {$clue.html("You're getting warmer. Guess higher.").fadeIn(700).fadeOut(4000);} 
-            else {$clue.html("You're getting warmer. Guess lower.").fadeIn(700).fadeOut(4000);}
+            if (intPositive) {$clue.html("You're getting warmer. Guess higher.").fadeIn(700).fadeOut(3000);} 
+            else {$clue.html("You're getting warmer. Guess lower.").fadeIn(700).fadeOut(3000);}
         } else {
-            if (intPositive) {$clue.html("You're ice cold... guess higher!").fadeIn(700).fadeOut(4000);} 
-            else {$clue.html("You're ice cold... guess lower!").fadeIn(700).fadeOut(4000);}
+            if (intPositive) {$clue.html("You're ice cold... guess higher!").fadeIn(700).fadeOut(3000);} 
+            else {$clue.html("You're ice cold... guess lower!").fadeIn(700).fadeOut(3000);}
         }
         return console.log("You have " + (this.totalTries - this.pastGuesses.length) + " guesses remaining.");
     },
