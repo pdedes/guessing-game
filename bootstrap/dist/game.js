@@ -22,7 +22,10 @@ $(document ).ready(function() {
     });
 
     $("#hint").on("click", function (event) {
-        // Need to code this functionality
+        $("#gameResult").html("The answer was, " + newGame.target + ".").fadeIn(500).fadeOut(4000);
+        newGame.resetGame();
+        $("#guessCount").html(newGame.totalTries-newGame.numTries);
+        $("#pastAttempts").html(newGame.pastGuesses.join(", "));
     });
 
     $("#playerguess").on("keyup", function (event) {
