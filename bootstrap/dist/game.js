@@ -1,13 +1,7 @@
 
-
 $(document ).ready(function() {
     
     newGame = new Game();
-    // var updateTries = $("#guessCount").html(function () {
-    //     debugger;
-    //     var printTries = newGame.totalTries-newGame.numTries;
-    //     return " " + printTries + " ";
-    // });
 
     $("#checkGuessButton").on("click", function (event) {
         event.stopPropagation();
@@ -15,21 +9,29 @@ $(document ).ready(function() {
         $("#playerguess").val("");
         newGame.checkGuess(guessValue);
         $("#guessCount").html(newGame.totalTries-newGame.numTries);
+        $("#pastAttempts").html(newGame.pastGuesses.join(", "));
     });
-    // $("#guessCount").html("You have 5 attempts remaining.");
-    $("#restart").on("mouseup", function (event) {
+
+    $("#restart").on("click", function (event) {
         newGame.resetGame();
         $("#guessCount").html(newGame.totalTries-newGame.numTries);
+        $("#pastAttempts").html(newGame.pastGuesses.join(", "));
+        $("#gameResult").html("New Game Started").fadeIn(500).fadeOut(4000); //Only works once?
+        $(".jumbotron").css({"background-color": "#EEEEEE" });
+        
     });
-    $("#hint").on("mouseup", function (event) {
+
+    $("#hint").on("click", function (event) {
         // Need to code this functionality
     });
+
     $("#playerguess").on("keyup", function (event) {
         if (event.keyCode === 13) {
             var guessValue = parseInt($("#playerguess").val(), 10);
             $("#playerguess").val("")
             newGame.checkGuess(guessValue);
             $("#guessCount").html(newGame.totalTries-newGame.numTries);
+            $("#pastAttempts").html(newGame.pastGuesses.join(", "));
         }
     })
 
@@ -58,17 +60,20 @@ var gameProto = {
         
             if (this.guess !== this.target && this.numTries === this.totalTries) {
                 this.resetGame();
-                $("#clue").html("Sorry, you lost! New game starts now...");
+                $("#gameResult").html("You Lose ;-P! New Game starts Now...").fadeIn(500).fadeOut(5000);
+                $(".jumbotron").css({"background-color": "#FFCCCF" });
             } else if (this.guess !== this.target) { 
                 this.pastGuesses.push(this.guess);
                 this.notify();
             } else {
                 this.resetGame();
-                $("#clue").html("You win!");
+                $("#gameResult").html("You Guessed the Number!").fadeIn(500).fadeOut(5000);
+                $(".jumbotron").css({"background-color": "#CFFADD" });
             }
 
         } else {
-            $("#clue").html("Sorry, you lost! New game starts now...");
+            $("#gameResult").html("You Lose ;-P! New Game starts Now...").fadeIn(500).fadeOut(5000);
+            $(".jumbotron").css({"background-color": "#FC9FA4" });
             this.resetGame();
         };
     },
@@ -82,14 +87,14 @@ var gameProto = {
 
         //This determines distance from the target, and informs player to guess in the correct direction (pos or neg)
         if (distance < 10) {
-            if (intPositive) {$clue.html("You're very hot! Guess higher.").fadeIn(700).fadeOut(3000);} 
-            else {$clue.html("You're very hot! Guess lower.").fadeIn(700).fadeOut(3000);}
+            if (intPositive) {$clue.html("You're very hot! Guess higher.").fadeIn(700).fadeOut(2000);} 
+            else {$clue.html("You're very hot! Guess lower.").fadeIn(700).fadeOut(2000);}
         } else if (distance >=10 && distance < 20) {
-            if (intPositive) {$clue.html("You're getting warmer. Guess higher.").fadeIn(700).fadeOut(3000);} 
-            else {$clue.html("You're getting warmer. Guess lower.").fadeIn(700).fadeOut(3000);}
+            if (intPositive) {$clue.html("You're getting warmer. Guess higher.").fadeIn(700).fadeOut(2000);} 
+            else {$clue.html("You're getting warmer. Guess lower.").fadeIn(700).fadeOut(2000);}
         } else {
-            if (intPositive) {$clue.html("You're ice cold... guess higher!").fadeIn(700).fadeOut(3000);} 
-            else {$clue.html("You're ice cold... guess lower!").fadeIn(700).fadeOut(3000);}
+            if (intPositive) {$clue.html("You're ice cold... guess higher!").fadeIn(700).fadeOut(2000);} 
+            else {$clue.html("You're ice cold... guess lower!").fadeIn(700).fadeOut(2000);}
         }
         return console.log("You have " + (this.totalTries - this.pastGuesses.length) + " guesses remaining.");
     },
@@ -99,7 +104,6 @@ var gameProto = {
     }
 }
 
-//Setting 'this' for the Game prototype and initialized values.
 function Game () {
     this.target = Math.floor(Math.random()*100)+1;
     this.guess = 0;
@@ -107,7 +111,4 @@ function Game () {
     this.pastGuesses = [];
 }
 
-//Assigning inheritance.
 Game.prototype = gameProto;
-
-//Declaring a new game.
