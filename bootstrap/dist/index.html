@@ -14,12 +14,6 @@
     <!-- Bootstrap core CSS -->
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
-    <!-- Custom styles for this template-->
-   
-
-
-
-   
   </head>
 
   <body>
@@ -36,7 +30,7 @@
       </div>
 
       <div class="jumbotron">
-        <h2>Can you Guess the Number?</h2>
+        <h2>Can you Guess the Number? <span id="gameResult"></span></h2>
         <p class="lead">To win this game, you must correctly guess the number I'm thinking of. The catch? You only have a limited number of guesses available...<span class="numbertry">five attempts to be exact, good luck!</span></p>
         <p>
 			<div class="buttons">
@@ -50,6 +44,9 @@
 			  <input id="playerguess" type="text" class="form-control" placeholder="From 1 to 100" aria-describedby="basic-addon1">
 			</div>
 			<div class="alert alert-success" role="alert">You have <span id="guessCount">5</span> of guesses remaining. <span id="clue"></span></div>
+      <div>
+        Your guesses so far: <span id="pastAttempts"></span>
+      </div>
 		</p>
 	  </div>
       
