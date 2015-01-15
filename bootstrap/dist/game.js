@@ -55,7 +55,10 @@ var gameProto = {
         // this.guess = parseInt(document.getElementById("playerguess").value, 10);
         this.guess = num;
         if (this.guess < 1 || this.guess > 100) {
-            $("#clue").html("Your guess was out of bounds. Make sure to choose a number between 1 to 100.");
+            $("#clue").html("Choose a number between 1 to 100!").fadeIn(500).fadeOut(3000);
+        }
+        if (this.pastGuesses.indexOf(this.guess) > -1) {
+            $("#clue").html("You have already chosen this number during this round.").fadeIn(500).fadeOut(3000);
         }
         else if (this.numTries < this.totalTries) {
             this.numTries++;
