@@ -7,6 +7,7 @@ $(document ).ready(function() {
         event.stopPropagation();
         var guessValue = parseInt($("#playerguess").val(), 10);
         $("#playerguess").val("");
+        
         newGame.checkGuess(guessValue);
         $("#guessCount").html(newGame.totalTries-newGame.numTries);
         $("#pastAttempts").html(newGame.pastGuesses.join(", "));
@@ -53,14 +54,16 @@ var gameProto = {
     checkGuess: function (num) {
         // this.guess = parseInt(document.getElementById("playerguess").value, 10);
         this.guess = num;
-        if(this.numTries < this.totalTries) {
+        if (this.guess < 1 || this.guess > 100) {
+            $("#clue").html("Your guess was out of bounds. Make sure to choose a number between 1 to 100.");
+        }
+        else if (this.numTries < this.totalTries) {
             this.numTries++;
-            while (this.guess < 1 || this.guess > 100) {
-                $("#clue").html("Your guess was out of bounds. Pick a number between 1 to 100.");
-                console.log("outside bounds...");
-                this.guess = +(prompt("Your guess is not between 1 to 100."));
-            }
-        
+            // while (this.guess < 1 || this.guess > 100) {
+            //     $("#clue").html("Your guess was out of bounds. Pick a number between 1 to 100.");
+            //     this.guess = +(prompt("Your guess is not between 1 to 100."));
+            // }
+         
             if (this.guess !== this.target && this.numTries === this.totalTries) {
                 this.resetGame();
                 $("#gameResult").html("You Lose ;-P! New Game starts Now...").fadeIn(500).fadeOut(5000);
