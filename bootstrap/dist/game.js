@@ -1,4 +1,3 @@
-
 $(document ).ready(function() {
     
     newGame = new Game();
@@ -17,7 +16,7 @@ $(document ).ready(function() {
         newGame.resetGame();
         $("#guessCount").html(newGame.totalTries-newGame.numTries);
         $("#pastAttempts").html(newGame.pastGuesses.join(", "));
-        $("#gameResult").html("New Game Started").fadeIn(500).fadeOut(4000); //Only works once?
+        $("#gameResult").html("New Game Started").fadeIn(500).fadeOut(4000);
         $(".jumbotron").css({"background-color": "#EEEEEE" });
         
     });
@@ -54,10 +53,11 @@ var gameProto = {
     checkGuess: function (num) {
         // this.guess = parseInt(document.getElementById("playerguess").value, 10);
         this.guess = num;
+        // debugger;
         if (this.guess < 1 || this.guess > 100) {
             $("#clue").html("Choose a number between 1 to 100!").fadeIn(500).fadeOut(3000);
         }
-        if (this.pastGuesses.indexOf(this.guess) > -1) {
+        else if (this.pastGuesses.indexOf(this.guess) > -1) {
             $("#clue").html("You have already chosen this number during this round.").fadeIn(500).fadeOut(3000);
         }
         else if (this.numTries < this.totalTries) {
